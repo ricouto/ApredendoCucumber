@@ -14,7 +14,7 @@ import cucumber.api.junit.Cucumber;
 		//tags = "@tipo2",
 		//tags = {"@tipo1, @tipo2"},
 		tags = {},
-		plugin = "pretty",
+		plugin = {"pretty", "html:target/report-html", "json:target/report-json"},
 		monochrome = true,
 		snippets = SnippetType.CAMELCASE,
 		dryRun = false,
