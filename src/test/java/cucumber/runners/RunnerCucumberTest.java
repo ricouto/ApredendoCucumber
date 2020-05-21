@@ -15,11 +15,11 @@ import cucumber.api.junit.Cucumber;
 		//tags = {"@tipo1, @tipo2"},
 		tags = {},
 		plugin = {"pretty", "html:target/report-html", "json:target/report-json"},
-		monochrome = true,
+		monochrome = false, //true,
 		snippets = SnippetType.CAMELCASE,
 		dryRun = false,
 		strict = false
 		)
-public class RunnerCucumber {
+public class RunnerCucumberTest {
 
 }
