@@ -13,6 +13,7 @@ import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
 import cucumber.entidades.Filme;
 import cucumber.entidades.NotaAluguel;
+import cucumber.entidades.TipoAluguel;
 import cucumber.servicos.AluguelService;
 import cucumber.utils.DateUtils;
 
@@ -22,7 +23,7 @@ public class AlugarFilmesSteps {
 	private AluguelService aluguel = new AluguelService();
 	private NotaAluguel nota;
 	private String erro;
-	private String tipoAluguel;
+	private TipoAluguel tipoAluguel = TipoAluguel.COMUM;
 	
 	@Dado("^um filme com estoque de (\\d+) unidades$")
 	public void umFilmeComEstoqueDeUnidades(int arg1) throws Throwable {
@@ -77,7 +78,7 @@ public class AlugarFilmesSteps {
 	
 	@Dado("^que o tipo do aluguel seja (.*)$")
 	public void queOTipoDoAluguelSejaExtendido(String tipo) throws Throwable {
-		tipoAluguel = tipo;
+		tipoAluguel = tipo.equals("semanal")? TipoAluguel.SEMANAL: tipo.equals("extendido")? TipoAluguel.EXTENDIDO: TipoAluguel.COMUM;
 	}
 
 	@Então("^a data de entrega será em (\\d+) dias?$")
