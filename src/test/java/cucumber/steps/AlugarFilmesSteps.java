@@ -7,15 +7,15 @@ import java.util.Map;
 
 import org.junit.Assert;
 
-import cucumber.api.DataTable;
-import cucumber.api.java.pt.Dado;
-import cucumber.api.java.pt.Então;
-import cucumber.api.java.pt.Quando;
 import cucumber.entidades.Filme;
 import cucumber.entidades.NotaAluguel;
 import cucumber.entidades.TipoAluguel;
 import cucumber.servicos.AluguelService;
 import cucumber.utils.DateUtils;
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.pt.Dado;
+import io.cucumber.java.pt.Então;
+import io.cucumber.java.pt.Quando;
 
 public class AlugarFilmesSteps {
 	

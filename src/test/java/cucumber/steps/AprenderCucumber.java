@@ -6,11 +6,9 @@ import java.util.Date;
 
 import org.junit.Assert;
 
-import cucumber.api.Transform;
-import cucumber.api.java.pt.Dado;
-import cucumber.api.java.pt.Então;
-import cucumber.api.java.pt.Quando;
-import cucumber.converters.DateConverter;
+import io.cucumber.java.pt.Dado;
+import io.cucumber.java.pt.Então;
+import io.cucumber.java.pt.Quando;
 
 public class AprenderCucumber {
 	
@@ -55,8 +53,8 @@ public class AprenderCucumber {
 	
 	Date entrega = new Date();
 	
-	@Dado("^que a entrega é dia (.*)$")
-	public void queAEntregaÉDia(@Transform(DateConverter.class) Date data) throws Throwable {
+	@Dado("que a entrega é dia {data}") //removido o ^....$ pois eh um regex e o parametro q levada a data (.*)
+	public void queAEntregaÉDia(Date data) throws Throwable {
 		entrega = data;
 		System.out.println(entrega);
 		/*Calendar cal = Calendar.getInstance();
@@ -113,6 +111,4 @@ public class AprenderCucumber {
 	@Então("^o teste vai funcionar$")
 	public void oTesteVaiFuncionar() throws Throwable {
 	}	
-
-	
 }
