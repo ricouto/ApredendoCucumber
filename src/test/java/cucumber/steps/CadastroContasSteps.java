@@ -6,21 +6,23 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
 
-public class CadastroContas {
+public class CadastroContasSteps {
 	
 	protected static WebDriver driver = null;
 	
 	@Dado("^que estou acessando a aplicação$")
 	public void queEstouAcessandoAAplicação() throws Throwable {
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\ricardo.couto\\Documents\\automacaoWK\\driver\\chromedriver.exe");	
-		driver = new ChromeDriver();
-		/*ChromeOptions options = new ChromeOptions();
-		options.addArguments("start-maximized");// ("--headless");//
-		driver = new ChromeDriver(options);*/
+		//driver = new ChromeDriver();
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--headless");//("start-maximized");// 
+		driver = new ChromeDriver(options);
 		driver.get("http://srbarriga.herokuapp.com/logout");
 	}
 
@@ -77,6 +79,21 @@ public class CadastroContas {
 	@Então("^sou notificado que já existe uma conta com esse nome$")
 	public void souNotificadoQueJáExisteUmaContaComEsseNome() throws Throwable {
 		Assert.assertEquals("Já existe uma conta com esse nome!", driver.findElement(By.xpath("//div[contains(text(),'Já existe uma conta com esse nome!')]")).getText());
+	}
+	
+	@Então("^recebo a mensagem \"([^\"]*)\"$")
+	public void receboAMensagem(String arg1) throws Throwable {
+		Assert.assertEquals(arg1, driver.findElement(By.xpath("//div[starts-with(@class,'alert alert-')]")).getText());
+	}
+	
+	@Before
+	public void inicial() {
+		//System.out.println("Comecando aqui .....");
+	}
+	
+	@After
+	public void fecharBrowser() {
+		driver.quit();
 	}
 
 }

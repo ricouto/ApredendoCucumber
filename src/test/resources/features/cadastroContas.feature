@@ -4,7 +4,7 @@ Funcionalidade: Cadastro de contas
 	Gostaria de cadastrar contas
 	Para que eu possa distribuir meu dinheiro de uma forma mais organizada
 
-Cenário: Deve inserir uma conta com sucesso
+Contexto:
 	Dado que estou acessando a aplicação
 	Quando informo o usuário "ricardo_macedo@hotmail.com"
 	E a senha "1234567890"
@@ -12,29 +12,14 @@ Cenário: Deve inserir uma conta com sucesso
 	Então visualizo a página inicial
 	Quando seleciono Contas
 	E seleciono Adicionar
-	E informo a conta "Conta de Teste"
+
+Esquema do Cenário: Deve validar regras cadastro conta
+	Quando informo a conta "<conta>"
 	E seleciono Salvar
-	Então a conta é inserida com sucesso
-	
-Cenário: Não deve inserir uma conta sem nome
-	Dado que estou acessando a aplicação
-	Quando informo o usuário "ricardo_macedo@hotmail.com"
-	E a senha "1234567890"
-	E seleciono entrar
-	Então visualizo a página inicial
-	Quando seleciono Contas
-	E seleciono Adicionar
-	E seleciono Salvar
-	Então sou notificar que o nome da conta é obrigatório
-	
-Cenário: Não deve inserir uma conta com nome já existente
-	Dado que estou acessando a aplicação
-	Quando informo o usuário "ricardo_macedo@hotmail.com"
-	E a senha "1234567890"
-	E seleciono entrar
-	Então visualizo a página inicial
-	Quando seleciono Contas
-	E seleciono Adicionar
-	E informo a conta "Conta de Teste"
-	E seleciono Salvar
-	Então sou notificado que já existe uma conta com esse nome
+	Então recebo a mensagem "<mensagem>"
+
+Exemplos:
+	|conta 				|mensagem 							|
+	|Conta de Teste 	|Conta adicionada com sucesso! 		|
+	|					|Informe o nome da conta			|
+	|Conta mesmo nome	|Já existe uma conta com esse nome!	|
